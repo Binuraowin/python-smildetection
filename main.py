@@ -1,5 +1,5 @@
 import cv2
-import tensorflow as tf
+
 
 face_detector  = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 smile_detector = cv2.CascadeClassifier('haarcascade_smile.xml')
