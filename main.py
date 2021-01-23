@@ -13,9 +13,19 @@ while True:
     frame_grayscale = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 
     faces = face_detector.detectMultiScale(frame_grayscale)
+    smile = smile_detector.detectMultiScale(frame_grayscale,1.7,20)
 
     for(x,y,w,h) in faces:
         cv2.rectangle(frame,(x,y),(x+w,y+h),(100,200,50),4)
+        the_face = frame[y:y+h, x:x+w]
+        face_grayscale = cv2.cvtColor(the_face,cv2.COLOR_BGR2GRAY)
+
+        smiles = smile_detector.detectMultiScale(face_grayscale,1.7,20)
+        for (x_, y_, w_, h_) in smiles:
+            cv2.rectangle(the_face, (x_, y_), (x_ + w_, y_ + h_), (50, 50, 200), 4)
+
+    # for (x, y, w, h) in smile:
+    #     cv2.rectangle(frame, (x, y), (x + w, y + h), (50, 50, 200), 4)
 
     cv2.imshow('Smile Detector',frame)
 
